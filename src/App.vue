@@ -2,7 +2,7 @@
   <section>
     <h1>IronContacts</h1>
     <div>
-      <button @click="addRandonContact">Add Randon Contact</button>
+      <button @click="addRandomContact">Add Random Contact</button>
       <button @click="sortByPopularity">Sort by popularity</button>
       <button @click="sortByName">Sort by name</button>
     </div>
@@ -55,7 +55,7 @@ export default {
       this.remainingContacts = this.contactList.slice(this.numberContacts,contactsArrLength)
     },
  
-    addRandonContact() {
+    addRandomContact() {
       const randomContact = Math.floor(Math.random() * this.remainingContacts.length)
       this.contacts.push(this.remainingContacts[randomContact]);
       this.remainingContacts.splice(randomContact,1)
