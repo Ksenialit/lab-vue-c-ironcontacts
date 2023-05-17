@@ -14,6 +14,7 @@
           <th>Popularity</th>
           <th>Won Oscar</th>
           <th>Won Emmy</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -25,6 +26,8 @@
           <td v-if="contact.wonOscar">🏆</td>
           <td v-else></td>
           <td v-if="contact.wonEmmy">🏆</td>
+          <td v-else></td>
+          <button @click="deleteContacts">Delete</button>
         </tr>
       </tbody>
     </table>
@@ -63,11 +66,33 @@ export default {
     },
 
     sortByPopularity() {
-
+      this.contacts.sort(function (a,b){
+        if(a.popularity < b.popularity){
+          return 1;
+        }
+        if (a.popularity > b.popularity) {
+          return -1;
+        }
+        return 0
+      })
     },
 
     sortByName() {
+      this.contacts.sort(function (a,b){
+        if(a.name < b.name){
+          return -1;
+        }
+        if (a.name > b.name) {
+          return 1;
+        }
+        return 0
+      })
+    },
 
+    deleteContacts(removeContact) {
+      const contactIndex = this.contacts.indexOf(removeContact)
+      this.contacts.splice(contactIndex, 1)
+      this.remainingContacts.push(removeContact)
     }
   },
 }
